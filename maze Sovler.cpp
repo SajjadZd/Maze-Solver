@@ -206,12 +206,31 @@ public:
 int main() {
     srand(time(0));
 
-    int height, width;
-    cout << "Enter maze height: ";
+     int height, width;
+
+    cout << "Enter maze height (3-70): ";
+heightAgain:
     cin >> height;
-    cout << "Enter maze width: ";
+
+    if (cin.fail() || height < 3 || height > 70) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Invalid height. Enter height again (1-70): ";
+        goto heightAgain;
+    }
+
+    cout << "Enter maze width (3-70): ";
+widthAgain:
     cin >> width;
-    
+
+    if (cin.fail() || width < 3 || width > 70) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Invalid width. Enter width again (1-70): ";
+        goto widthAgain;
+    }
+
+
     cout << "\n{";
     setColor(BLUE);
     cout << "[]";
@@ -255,4 +274,3 @@ int main() {
 
     return 0;
 }
-
